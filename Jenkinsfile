@@ -30,7 +30,7 @@ pipeline {
     post {
     	always {
         	script {
-        	    def processId = sh(returnStdout: true, script: "pgrep -f 'python /path/to/deploy/calculator.py' || true").trim()
+        	    def processId = sh(returnStdout: true, script: "pgrep -f 'python3 calculator.py' || true").trim()
         	    if (processId) {
         	        input message: 'Manual approval required to kill the application. Proceed?', ok: 'Kill', submitter: 'admin'
         	        sh "kill $processId"
