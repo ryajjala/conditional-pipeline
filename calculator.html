@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator</title>
+</head>
+<body>
+    <h1>Calculator</h1>
+    <form action="/" method="POST">
+        <input type="text" name="num1" placeholder="Enter first number" required>
+        <select name="operator">
+            <option value="add">+</option>
+            <option value="subtract">-</option>
+            <option value="multiply">*</option>
+            <option value="divide">/</option>
+        </select>
+        <input type="text" name="num2" placeholder="Enter second number" required>
+        <input type="submit" value="Calculate">
+    </form>
+    {% if result %}
+        <h2>Result: {{ num1 }} {{ operation }} {{ num2 }} = {{ result }}</h2>
+    {% endif %}
+</body>
+</html>
+
