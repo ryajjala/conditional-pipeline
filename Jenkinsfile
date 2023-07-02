@@ -28,12 +28,17 @@ pipeline {
     }
     
     post {
-        always {
-            script {
-                def processId = sh(returnStdout: true, script: "pgrep gunicorn").trim()
-                input message: 'Manual approval required to kill the gunicorn process. Proceed?', ok: 'Kill', submitter: 'admin'
-                sh "kill $processId"
-            }
-        }
-    }
+    	always {
+        	script {
+        	    def processId = sh(returnStdout: true, script: "pgrep -f 'python /path/to/deploy/calculator.py' || true").trim()
+        	    if (processId) {
+        	        input message: 'Manual approval required to kill the application. Proceed?', ok: 'Kill', submitter: 'admin'
+        	        sh "kill $processId"
+        	    } else {
+        	        echo 'No running application found.'
+        	    }
+        	}
+    	}
+	}
+
 }
