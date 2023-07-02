@@ -20,7 +20,7 @@ pipeline {
             steps {
                 script {
                     sh "unzip -o deploy.zip"  // Replace '/path/to/deploy' with your desired deployment directory
-                    sh "mkdir templates;cp calculator.html templates/"
+                    sh "mkdir -p templates;cp calculator.html templates/"
                     sh "python3 calculator.py"
                 }
             }
